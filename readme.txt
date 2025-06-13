@@ -1,4 +1,4 @@
-# TermiRunner
+# Bash-n-Dash
 
 A **minimal** 60 FPS endless runner that runs entirely in your UNIX terminal.
 Written in ISO C11 with **ncurses**, a timer signal tick loop, and a forked input handler.
