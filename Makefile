@@ -1,26 +1,14 @@
-CC      = gcc
-CFLAGS  = -Wall -Wextra -pedantic -std=c11 -Iinclude
-LDFLAGS = -lncurses -lrt -pthread
+CC = gcc
+CFLAGS = -Wall -Wextra -pedantic -std=c11
+LDFLAGS = -lncurses
 
-SRC := $(wildcard src/*.c)
-OBJ := $(SRC:src/%.c=build/%.o)
-BIN := bashndash
+SRC = bashndash.c
+TARGET = bashndash
 
-.PHONY: all clean run
+all: $(TARGET)
 
-all: $(BIN)
-
-$(BIN): $(OBJ) | build
-	$(CC) $(OBJ) -o $@ $(LDFLAGS)
-
-build/%.o: src/%.c | build
-	$(CC) $(CFLAGS) -c $< -o $@
-
-build:
-	@mkdir -p build
+$(TARGET): $(SRC)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRC) $(LDFLAGS)
 
 clean:
-	rm -rf build $(BIN)
-
-run: all
-	./run.sh
+	rm -f $(TARGET) highscore.dat
